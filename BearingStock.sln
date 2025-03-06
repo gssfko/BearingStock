@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BearingStock.Core", "Bearin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BearingStock.Domain", "BearingStock.Domain\BearingStock.Domain.csproj", "{B0472D67-BEF4-42ED-B3FF-74AB950806A4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B49B805E-67C9-49F2-AC91-C5D1A6C98606}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BearingStock.Tests", "BearingStock.Tests\BearingStock.Tests.csproj", "{838907E7-62FC-4984-BE25-E521CBFE589C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +47,10 @@ Global
 		{B0472D67-BEF4-42ED-B3FF-74AB950806A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0472D67-BEF4-42ED-B3FF-74AB950806A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0472D67-BEF4-42ED-B3FF-74AB950806A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{838907E7-62FC-4984-BE25-E521CBFE589C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{838907E7-62FC-4984-BE25-E521CBFE589C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{838907E7-62FC-4984-BE25-E521CBFE589C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{838907E7-62FC-4984-BE25-E521CBFE589C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +61,7 @@ Global
 		{A8BDE5D4-261D-48DF-9563-4C1BCDFED204} = {79F115A1-094B-412B-B4F4-A030C3DC4265}
 		{103975FE-5385-409E-BEB2-5E216B15BFDF} = {79F115A1-094B-412B-B4F4-A030C3DC4265}
 		{B0472D67-BEF4-42ED-B3FF-74AB950806A4} = {79F115A1-094B-412B-B4F4-A030C3DC4265}
+		{838907E7-62FC-4984-BE25-E521CBFE589C} = {B49B805E-67C9-49F2-AC91-C5D1A6C98606}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4F88039F-0BC3-4224-86B1-21DA06E556FB}

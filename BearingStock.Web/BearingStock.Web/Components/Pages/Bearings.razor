@@ -1,0 +1,82 @@
+﻿@page "/bearings"
+@using BearingStock.Web.Models
+@using BearingStock.Web.Services
+
+@inject BearingService BearingService
+@inject NavigationManager Navigation
+
+<h3>Bearings List</h3>
+
+<button class="btn btn-primary mb-3" @onclick="CreateBearing">Create New Bearing</button>
+
+@if (bearings == null)
+{
+    <p>Loading...</p>
+}
+else if (!bearings.Any())
+{
+    <p>No bearings found.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Manufacturer</th>
+                <th>Size</th>
+                <th>Size Type</th>
+                <th>Created At</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bearing in bearings)
+            {
+                <tr>
+                    <td>@bearing.Id</td>
+                    <td>@bearing.Name</td>
+                    <td>@bearing.Type</td>
+                    <td>@bearing.Manufacturer</td>
+                    <td>@bearing.Size</td>
+                    <td>@(bearing.SizeType.HasValue ? bearing.SizeType.Value.ToString() : "N/A")</td>
+                    <td>@(bearing.CreatedAt?.ToString("yyyy-MM-dd HH:mm") ?? "N/A")</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" @onclick="() => EditBearing(bearing.Id)">Edit</button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => DeleteBearing(bearing.Id)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+
+    private List<BearingMinimal>? bearings;
+
+    protected override async Task OnInitializedAsync()
+    {
+        bearings = await BearingService.GetBearingsAsync();
+        Console.WriteLine("Bearings.razor initialized!");
+    }
+
+    private void CreateBearing()
+    {
+        Console.WriteLine("CreateBearing() executed"); // Debugging
+        Navigation.NavigateTo("/bearings/create");
+    }
+
+    private void EditBearing(int id) => Navigation.NavigateTo($"/bearings/edit/{id}");
+
+    private async Task DeleteBearing(int id)
+    {
+        if (await BearingService.DeleteBearingAsync(id))
+        {
+            bearings = await BearingService.GetBearingsAsync();
+            StateHasChanged();
+        }
+    }
+}

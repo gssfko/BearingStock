@@ -1,0 +1,72 @@
+﻿@page "/bearings/create"
+@page "/bearings/edit/{Id:int?}"
+@page "/bearings/{Id:int?}"
+@using BearingStock.Domain.Enums
+@using BearingStock.Web.Models
+@using BearingStock.Web.Services
+
+@inject BearingService BearingService
+@inject NavigationManager Navigation
+
+<h3>@(Id == null ? "Create New Bearing" : "Edit Bearing")</h3>
+
+<EditForm Model="bearing" OnValidSubmit="SaveBearing">
+    <DataAnnotationsValidator />
+    <div class="mb-3">
+        <label>Name</label>
+        <InputText class="form-control" @bind-Value="bearing.Name" />
+    </div>
+    <div class="mb-3">
+        <label>Type</label>
+        <InputText class="form-control" @bind-Value="bearing.Type" />
+    </div>
+    <div class="mb-3">
+        <label>Manufacturer</label>
+        <InputText class="form-control" @bind-Value="bearing.Manufacturer" />
+    </div>
+    <div class="mb-3">
+        <label>Size</label>
+        <InputNumber class="form-control" @bind-Value="bearing.Size" />
+    </div>
+    <div class="mb-3">
+        <label>Size Type</label>
+        <InputSelect class="form-control" @bind-Value="bearing.SizeType">
+            <option value="">-- Select --</option>
+            @foreach (var type in Enum.GetValues(typeof(BearingSizeType)))
+            {
+                <option value="@type">@type</option>
+            }
+        </InputSelect>
+    </div>
+    <button type="submit" class="btn btn-success">Save</button>
+</EditForm>
+
+@code {
+    [Parameter] public int? Id { get; set; }
+    private BearingMinimal bearing = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id.HasValue)
+        {
+            var existingBearing = await BearingService.GetBearingByIdAsync(Id.Value);
+            if (existingBearing != null)
+            {
+                bearing = existingBearing;
+            }
+        }
+    }
+
+    private async Task SaveBearing()
+    {
+        if (Id == null)
+        {
+            await BearingService.CreateBearingAsync(bearing);
+        }
+        else
+        {
+            await BearingService.UpdateBearingAsync(bearing);
+        }
+        Navigation.NavigateTo("/bearings");
+    }
+}

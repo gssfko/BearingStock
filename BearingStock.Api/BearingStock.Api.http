@@ -1,0 +1,6 @@
+@BearingStock.Api_HostAddress = http://localhost:5255
+
+GET {{BearingStock.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

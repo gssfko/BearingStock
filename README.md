@@ -28,7 +28,7 @@ Ensure you have the following installed:
 
    ```sql
    CREATE DATABASE BearingStock;
-   
+   ```
 ---
 
 ## **3️⃣ Apply Migrations & Create Tables**
@@ -41,15 +41,18 @@ Run the following Entity Framework Core commands to set up the database schema:
 
 4️⃣ Update Configuration (appsettings.json)
 Modify appsettings.json inside BearingStock.Api:
-    "ConnectionStrings": {
-      "DbConnection": "Server=DESKTOP-903LT1S;Database=BearingStock;Trusted_Connection=True;TrustServerCertificate=True;"
-    }
+   ```json
+       "ConnectionStrings": {
+         "DbConnection": "Server=DESKTOP-903LT1S;Database=BearingStock;Trusted_Connection=True;TrustServerCertificate=True;"
+       }
+   ```
 Replace DESKTOP-903LT1S with your actual SQL Server name.
 Ensure TrustServerCertificate=True; is included if using a self-signed certificate.
 
 ---
 
-🚀 Running the Application
+## **🚀 Running the Application**
+
 1️⃣ Start the API Server
 Run the API project:
 
@@ -75,12 +78,25 @@ http://localhost:5000/bearings (Bearings List)
 
 ---
 
-📡 API Endpoints
-🟢 Bearings Endpoints (/api/bearings)
-Method	Endpoint	Description
-GET	/api/bearings	Get all bearings
-GET	/api/bearings/{id}	Get a single bearing by ID
-POST	/api/bearings	Create a new bearing
-PUT	/api/bearings/{id}	Update an existing bearing
-DELETE	/api/bearings/{id}	Delete a bearing
+## 📡 API Endpoints
+
+### **🟢 Bearings Endpoints (`/api/bearings`)**
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| **GET** | `/api/bearings` | Get all bearings |
+| **GET** | `/api/bearings/{id}` | Get a single bearing by ID |
+| **POST** | `/api/bearings` | Create a new bearing |
+| **PUT** | `/api/bearings/{id}` | Update an existing bearing |
+| **DELETE** | `/api/bearings/{id}` | Delete a bearing |
+
+### **📝 Sample JSON for Creating a Bearing**
+```json
+{
+  "name": "Bearing X",
+  "type": "Ball",
+  "manufacturer": "Company Y",
+  "size": 20.5,
+  "sizeType": 1
+}
+
 
